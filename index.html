@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spoogle</title>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Spotify Template</title>
+	
+
+	<!-- Include libraries -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+
+	<!-- Include my files -->
+	<script type="text/javascript" src="js/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/main.css">
+
+	<!-- Add Google Maps -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBamQM2x6Jze35IUuLzFIrHkYnt0O4dTiE&libraries=geometry&callback=initMap"></script>
+</head>
+<body>
+	<div id="main-content" class="container" ng-app="app" ng-controller="controller">
+		<h1>Spoogle</h1>
+		<form name="places" novalidate>
+			<label for="start">Start: </label>
+			<input ng-model="startPos" type="text" id="start" class="form-control" required>
+			<label for="end">End: </label>
+			<input ng-model="endPos" type="text" id="end" class="form-control" required>
+			<button ng-click="calcRoute()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
+		</form>
+		<div id="map"></div>
+		<div id="directionsPanel"></div>
+		<div id="playlist"></div>
+	</div>
+</body>
+</html>
