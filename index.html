@@ -30,11 +30,30 @@
 			<input ng-model="startPos" type="text" id="start" class="form-control" required>
 			<label for="end">End: </label>
 			<input ng-model="endPos" type="text" id="end" class="form-control" required>
-			<button ng-click="calcRoute()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
+			<label for="travelMode">Travel Mode: </label>
+			<select id="travelMode" ng-model="travelMode" class="form-control" required>
+				<option value="DRIVING">Driving</option>
+				<option value="WALKING">Walking</option>
+				<option value="TRANSIT">Transit</option>
+				<option value="BICYCLING">Bicycling</option>
+			</select>
+			<label for="search-terms">Search Terms: (separate terms with spaces)</label>
+			<input id="search-terms" type="text" ng-model="searchTerms" class="form-control" value="hello" />
+			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
 		</form>
 		<div id="map"></div>
 		<div id="directionsPanel"></div>
-		<div id="playlist"></div>
+		<div id="playlist">
+			<ol>
+				<li ng-repeat="song in tracks">{{song.name}}</li>
+			</ol>
+		</div>
+		<p>
+			Trip Length: {{tripLength}}
+		</p>
+		<p>
+			Playlist Length: {{playlistLength}}
+		</p>
 	</div>
 </body>
 </html>
