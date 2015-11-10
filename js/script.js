@@ -36,9 +36,8 @@ app.controller('controller', function($scope, $http, Spotify) {
 			        url: 'https://api.spotify.com/v1/me',
 			        beforeSend: function(xhr) {
 			             xhr.setRequestHeader("Authorization", "Bearer " + auth)
-			        }, success: function(data){
-			            console.log(data);
-			            //process the JSON data etc
+			        }, success: function(user){
+			            $scope.username = user.id;
 			        }
 			})
 		});
