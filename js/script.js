@@ -14,7 +14,7 @@ var app = angular.module('app', ['spotify']);
 
 app.config(function (SpotifyProvider) {
 	SpotifyProvider.setClientId('700f2cbb304e42b3afef2380f3308c6a');
-	SpotifyProvider.setRedirectUri('https://students.washington.edu/biega/info343/Spoogle/');
+	SpotifyProvider.setRedirectUri('https://students.washington.edu/biega/info343/Spoogle/callback.html');
 	SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public');
 });
 
