@@ -43,6 +43,7 @@
 			</select>
 			<label for="search-terms">Search Terms: (separate terms with spaces)</label>
 			<input id="search-terms" type="text" ng-model="searchTerms" class="form-control" value="hello" required/>
+			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
 		</form>
 		<div id="map"></div>
 		<p>
@@ -51,11 +52,10 @@
 		<p>
 			Playlist Length: {{playlistLength}}
 		</p>
-		<button ng-disabled="username = ''" ng-click="addPlaylist()">Add Playlist</button>
 		<div id="directionsPanel"></div>
 		<div id="playlist">
 			<h2>Playlist</h2>
-			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
+			<button class="btn btn-primary" ng-disabled="username = ''" ng-click="addPlaylist()">Add Playlist</button>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
 			</ol>
