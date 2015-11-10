@@ -28,7 +28,7 @@
 	<div id="main-content" class="container" ng-app="app" ng-controller="controller">
 		<h1>Spoogle</h1>
 		<button ng-show="username == ''" ng-click="login()" class="btn btn-primary">Login to Spotify</button>
-		<p ng-binding="username"></p>
+		<p ng-bind="username"></p>
 		<form name="places" novalidate>
 			<label for="start">Start: </label>
 			<input ng-model="startPos" type="text" id="start" class="form-control" required>
