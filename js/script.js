@@ -47,7 +47,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			for(var i = 0; i < $scope.tracks.length; i++) {
 				uris.push($scope.tracks[i].uri);
 			}
-			Spotify.addPlalistTracks($scope.username, $scope.startPos + " to " $scope.endPos + "playlist", uris).then(function() {
+			Spotify.addPlalistTracks($scope.username, "test", uris).then(function() {
 				console.log("added songs");
 			});
 		});
