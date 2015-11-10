@@ -7,18 +7,28 @@ var directionsService;
 var offset = 0;
 var data;
 var baseUrl = 'https://api.spotify.com/v1/search?limit=50&type=track&query=';
-var client_id =  "700f2cbb304e42b3afef2380f3308c6a";
+var redirect_uri = "https://students.washington.edu/biega/info343/Spoogle/";
 
 //angular application
-var app = angular.module('app', []);
+var app = angular.module('app', ['spotify']);
+
+app.config(function (SpotifyProvider) {
+	SpotifyProvider.setClientId('700f2cbb304e42b3afef2380f3308c6a');
+	SpotifyProvider.setRedirectUri('https://students.washington.edu/biega/info343/Spoogle/');
+	SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public');
+});
 
 //set up angular controller
-app.controller('controller', function($scope, $http) {
+app.controller('controller', function($scope, $http, Spotify) {
 	var term;
 	var termIndex = 0;
 	$scope.playlistLength = 0;
 	$scope.tripLength = 0;
 	$scope.tracks = [];
+
+	$scope.login = function() {
+		Spotify.login();
+	}
 
 	//calulates route and gets the songs for it
 	$scope.getPlaylist = function() {
@@ -111,16 +121,3 @@ var initMap = function() {
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 }
-
-var spotifyLogin = function() {
-	console.log('spotify');
-	var scopes = 'user-read-private user-read-email';
-	window.location.replace('https://accounts.spotify.com/authorize' + 
-		'?response_type=code' +'&client_id=' + client_id 
-		+ '&redirect_uri=' + 
-		encodeURIComponent("https://students.washington.edu/biega/info343/Spoogle/"));
-}
-
-$(function() {
-	spotifyLogin();
-});
