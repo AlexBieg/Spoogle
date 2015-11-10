@@ -30,6 +30,10 @@ app.controller('controller', function($scope, $http, Spotify) {
 		Spotify.login();
 	}
 
+	$scope.logout = function() {
+		Spotify.logout();
+	}
+
 	//calulates route and gets the songs for it
 	$scope.getPlaylist = function() {
 		$scope.calcRoute();
