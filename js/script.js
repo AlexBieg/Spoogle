@@ -115,7 +115,10 @@ var initMap = function() {
 var spotifyLogin = function() {
 	console.log('spotify');
 	var scopes = 'user-read-private user-read-email';
-	window.open('https://accounts.spotify.com/authorize' + '?response_type=code' +'&client_id=' + client_id + '&redirect_uri=' + encodeURIComponent("localhost:8080"));
+	window.location.replace('https://accounts.spotify.com/authorize' + 
+		'?response_type=code' +'&client_id=' + client_id 
+		+ '&redirect_uri=' + 
+		encodeURIComponent("https://students.washington.edu/biega/info343/Spoogle/"));
 }
 
 $(function() {
