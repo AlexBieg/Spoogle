@@ -7,6 +7,7 @@ var directionsService;
 var offset = 0;
 var data;
 var baseUrl = 'https://api.spotify.com/v1/search?limit=50&type=track&query=';
+var client_id =  "700f2cbb304e42b3afef2380f3308c6a";
 
 //angular application
 var app = angular.module('app', []);
@@ -51,7 +52,6 @@ app.controller('controller', function($scope, $http) {
 
 	//get the songs based off of the search terms from spotify
 	$scope.getSongs = function() {
-		console.log($scope.terms);
 	    $http.get(baseUrl + $scope.terms[termIndex] + "&offset=" + offset).success(function(response){
 	    	var hasSongs = true;
 	    	//are theres any songs in the response
@@ -76,11 +76,9 @@ app.controller('controller', function($scope, $http) {
 	    	//once we are done with the page check if we need to go to the next page
 	    	if ($scope.playlistLength < $scope.tripLength) {
 	    		if(hasSongs) {
-	    			console.log("has songs")
 	    			offset += 50;
 	    			$scope.getSongs();
 	    		} else if(termIndex < $scope.terms.length - 1) {
-	    			console.log("going to next term")
 	    			termIndex++;
 	    			offset += 50;
 	    			$scope.getSongs();
@@ -113,3 +111,13 @@ var initMap = function() {
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 }
+
+var spotifyLogin = function() {
+	console.log('spotify');
+	var scopes = 'user-read-private user-read-email';
+	window.open('https://accounts.spotify.com/authorize' + '?response_type=code' +'&client_id=' + client_id + '&redirect_uri=' + encodeURIComponent("localhost:8080"));
+}
+
+$(function() {
+	spotifyLogin();
+});
