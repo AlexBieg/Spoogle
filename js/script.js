@@ -32,15 +32,18 @@ app.controller('controller', function($scope, $http, Spotify) {
 		Spotify.login().then(function(data) {
 			console.log(data);
 			auth = data;
-			$.ajax({
-			        url: 'https://api.spotify.com/v1/me',
-			        beforeSend: function(xhr) {
-			             xhr.setRequestHeader("Authorization", "Bearer " + auth)
-			        }, success: function(user){
-			            $scope.username = user.id;
-			            console.log($scope.username);
-			        }
-			})
+			Spotify.getCurrentUser().then(function(user) {
+				console.log(user);
+			});
+			// $.ajax({
+			//         url: 'https://api.spotify.com/v1/me',
+			//         beforeSend: function(xhr) {
+			//              xhr.setRequestHeader("Authorization", "Bearer " + auth)
+			//         }, success: function(user){
+			//             $scope.username = user.id;
+			//             console.log($scope.username);
+			//         }
+			// })
 		});
 	}
 
