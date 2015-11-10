@@ -32,8 +32,8 @@ app.controller('controller', function($scope, $http, Spotify) {
 		Spotify.login().then(function(data) {
 			console.log(data);
 			auth = data;
-			$http.get("https://api.spotify.com/v1/me?auth=" + auth).success(function(user) {
-				$scope.username = user.id;
+			$http.get("https://api.spotify.com/v1/me/tracks").success(function(user) {
+				console.log(user);
 			});
 		});
 	}
