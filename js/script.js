@@ -32,9 +32,15 @@ app.controller('controller', function($scope, $http, Spotify) {
 		Spotify.login().then(function(data) {
 			console.log(data);
 			auth = data;
-			$http.get("https://api.spotify.com/v1/me/tracks").success(function(user) {
-				console.log(user);
-			});
+			$.ajax({
+			        url: 'https://api.spotify.com/v1/me',
+			        beforeSend: function(xhr) {
+			             xhr.setRequestHeader("Authorization", "Bearer " + auth)
+			        }, success: function(data){
+			            console.log(data);
+			            //process the JSON data etc
+			        }
+			})
 		});
 	}
 
