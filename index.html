@@ -46,18 +46,19 @@
 			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
 		</form>
 		<div id="map"></div>
-		<div id="directionsPanel"></div>
-		<div id="playlist">
-			<ol>
-				<li ng-repeat="song in tracks">{{song.name}}</li>
-			</ol>
-		</div>
 		<p>
 			Trip Length: {{tripLength}}
 		</p>
 		<p>
 			Playlist Length: {{playlistLength}}
 		</p>
+		<button ng-disabled="username = ''" ng-click="addPlaylist()">Add Playlist</button>
+		<div id="directionsPanel"></div>
+		<div id="playlist">
+			<ol>
+				<li ng-repeat="song in tracks">{{song.name}}</li>
+			</ol>
+		</div>
 	</div>
 </body>
 </html>

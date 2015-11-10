@@ -28,22 +28,27 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.tracks = [];
 	$scope.username = "";
 
+	//login user with spotify
 	$scope.login = function() {
 		Spotify.login().then(function(data) {
 			console.log(data);
 			auth = data;
 			Spotify.getCurrentUser().then(function(user) {
-				console.log(user);
+				$scope.username = user.id;
 			});
-			// $.ajax({
-			//         url: 'https://api.spotify.com/v1/me',
-			//         beforeSend: function(xhr) {
-			//              xhr.setRequestHeader("Authorization", "Bearer " + auth)
-			//         }, success: function(user){
-			//             $scope.username = user.id;
-			//             console.log($scope.username);
-			//         }
-			// })
+		});
+	}
+
+	$scope.addPlaylist = function() {
+		Spotify.createPlaylist($scope.username, {name : $scope.startPos + " to " $scope.endPos + "playlist"}).then(function() {
+			console.log("created playlist");
+			var uris = []
+			for(var i = 0; i < $scope.tracks.length; i++) {
+				uris.push($scope.tracks[i].uri);
+			}
+			Spotify.addPlalistTracks($scope.username, $scope.startPos + " to " $scope.endPos + "playlist", uris).then(function() {
+				console.log("added songs");
+			});
 		});
 	}
 
