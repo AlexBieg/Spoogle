@@ -55,6 +55,7 @@
 		<button ng-disabled="username = ''" ng-click="addPlaylist()">Add Playlist</button>
 		<div id="directionsPanel"></div>
 		<div id="playlist">
+			<h2>Playlist</h2>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
 			</ol>
