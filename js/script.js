@@ -14,6 +14,7 @@ var app = angular.module('app', []);
 //set up angular controller
 app.controller('controller', function($scope, $http) {
 	var term;
+	var termIndex = 0;
 	$scope.playlistLength = 0;
 	$scope.tripLength = 0;
 	$scope.tracks = [];
@@ -50,31 +51,50 @@ app.controller('controller', function($scope, $http) {
 
 	//get the songs based off of the search terms from spotify
 	$scope.getSongs = function() {
-	    $http.get(baseUrl + "love&offset=" + offset).success(function(response){
-	    	//if playlist is shorter than trip and we are still in the array
-	    	for (var i = 0; ($scope.playlistLength < $scope.tripLength) && i < response.tracks.items.length; i++) {
+		console.log($scope.terms);
+	    $http.get(baseUrl + $scope.terms[termIndex] + "&offset=" + offset).success(function(response){
+	    	var hasSongs = true;
+	    	//are theres any songs in the response
+	    	if (response.tracks.items.length == 0 ) {
+	    		hasSongs = false;
+	    	}
+	    	//if playlist is shorter than trip and we are still in the array and it has songs
+	    	for (var i = 0; ($scope.playlistLength < $scope.tripLength) && i < response.tracks.items.length && hasSongs; i++) {
 	    		var notAdded = true;
+	    		//check if song name already exists
 	    		for (var j = 0; j < $scope.tracks.length; j++) {
 	    			if ($scope.tracks[j].name == response.tracks.items[i].name) {
 	    				notAdded = false;
 	    			}
 	    		}
+	    		//if it is not in the playlist already, add it
 	    		if (notAdded) {
 	    			$scope.tracks.push(response.tracks.items[i]);
 	    			$scope.playlistLength += response.tracks.items[i]["duration_ms"] / 1000;
 	    		}
 	    	}
+	    	//once we are done with the page check if we need to go to the next page
 	    	if ($scope.playlistLength < $scope.tripLength) {
-				console.log(offset);
-				offset += 50;
-				$scope.getSongs();
+	    		if(hasSongs) {
+	    			console.log("has songs")
+	    			offset += 50;
+	    			$scope.getSongs();
+	    		} else if(termIndex < $scope.terms.length - 1) {
+	    			console.log("going to next term")
+	    			termIndex++;
+	    			offset += 50;
+	    			$scope.getSongs();
+	    		} else {
+	    			alert('Out of songs :( Try adding more terms to the search terms field');
+	    		}
 			}
 		});
 	}
 
 	//add songs to the page
 	$scope.addSongs = function() {
-		console.log('add songs')
+		termIndex = 0;
+		$scope.terms = $scope.searchTerms.split(/\s+/);
 		offset = 0;
 		$scope.tracks = [];
 		$scope.playlistLength = 0;

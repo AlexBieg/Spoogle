@@ -38,7 +38,7 @@
 				<option value="BICYCLING">Bicycling</option>
 			</select>
 			<label for="search-terms">Search Terms: (separate terms with spaces)</label>
-			<input id="search-terms" type="text" ng-model="searchTerms" class="form-control" value="hello" />
+			<input id="search-terms" type="text" ng-model="searchTerms" class="form-control" value="hello" required/>
 			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
 		</form>
 		<div id="map"></div>
