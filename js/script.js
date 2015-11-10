@@ -38,6 +38,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			             xhr.setRequestHeader("Authorization", "Bearer " + auth)
 			        }, success: function(user){
 			            $scope.username = user.id;
+			            console.log($scope.username);
 			        }
 			})
 		});
