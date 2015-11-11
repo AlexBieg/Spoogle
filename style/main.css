@@ -1,7 +1,13 @@
 #main-content, html, body { 
 	height: 100%;  
+	background-color: lightgray;
 }
 
 #map {
 	height: 50%;
+}
+
+#playlist p{
+	color: red;
+	background-color: gray;
 }
