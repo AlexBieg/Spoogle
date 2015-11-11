@@ -40,23 +40,21 @@ app.controller('controller', function($scope, $http, Spotify) {
 		console.log("adding playlist");
 		Spotify.createPlaylist($scope.username, {name : $scope.playlistName}).then(function(playlist) {
 			var uris = [];
+			var slice = 0;
 			for(var i = 0; i < $scope.tracks.length; i++) {
 				uris.push($scope.tracks[i].uri);
-
-				if(uris.length > 99) {
-					console.log("uris before inner")
-					console.log(uris)
-					Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
-						console.log('added middle songs');
-					});
-					uris = [];
-				}
 			}
-			console.log("uris before outer")
-			console.log(uris)
-			Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
-				console.log('added end songs');
+
+			Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
+				console.log('added first songs');
 			});
+			while(slice < uris.length) {
+				Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
+					console.log('added middle songs');
+				});
+				slice += 100;
+			}
+			alert("Added your songs!");
 		});
 	}
 
