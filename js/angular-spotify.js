@@ -426,7 +426,7 @@
 
             var authCompleted = false;
             var authWindow = openDialog(
-              'https://accounts.spotify.com/authorize?' + this.toQueryString(params),
+              'https://accounts.spotify.com/authorize?show_dialog=true' + this.toQueryString(params),
               'Spotify',
               'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
               function () {
