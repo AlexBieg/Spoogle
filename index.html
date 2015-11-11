@@ -27,7 +27,7 @@
 <body>
 	<div id="main-content" class="container" ng-app="app" ng-controller="controller">
 		<h1>Spoogle</h1>
-		<button ng-show="{{!username}}" ng-click="login()" class="btn btn-primary">Login to Spotify</button>
+		<button ng-show="{{username == ''}}" ng-click="login()" class="btn btn-primary">Login to Spotify</button>
 		<p>{{username}}</p>
 		<form name="places" novalidate>
 			<label for="start">Start: </label>
@@ -55,7 +55,7 @@
 		<div id="directionsPanel"></div>
 		<div id="playlist">
 			<h2>Playlist</h2>
-			<button class="btn btn-primary" ng-disabled="{{!username}}" ng-click="addPlaylist()">Add Playlist</button>
+			<button class="btn btn-primary" ng-disabled="{{username == ''}}" ng-click="addPlaylist()">Add Playlist</button>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
 			</ol>

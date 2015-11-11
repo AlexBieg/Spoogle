@@ -26,7 +26,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.playlistLength = 0;
 	$scope.tripLength = 0;
 	$scope.tracks = [];
-	$scope.username = false;
+	$scope.username = '';
 
 	//login user with spotify
 	$scope.login = function() {
