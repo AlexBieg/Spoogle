@@ -102,7 +102,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 	    		var notAdded = true;
 	    		//check if song name already exists
 	    		for (var j = 0; j < $scope.tracks.length; j++) {
-	    			if ($scope.tracks[j].name == response.tracks.items[i].name) {
+	    			if ($scope.tracks[j].uri == response.tracks.items[i].uri) {
 	    				notAdded = false;
 	    			}
 	    		}
