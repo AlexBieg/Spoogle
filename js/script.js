@@ -28,6 +28,10 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.tracks = [];
 	$scope.username = '';
 
+	$scope.canAddPlaylist = function() {
+		return username && playlistLength;
+	}
+
 	//login user with spotify
 	$scope.login = function() {
 		Spotify.login().then(function(data) {
@@ -47,7 +51,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			for(var i = 0; i < $scope.tracks.length; i++) {
 				uris.push($scope.tracks[i].uri);
 			}
-			Spotify.addPlalistTracks($scope.username, "test", uris).then(function() {
+			Spotify.addPlaylistTracks($scope.username, "test", uris).then(function() {
 				console.log("added songs");
 			});
 		});
