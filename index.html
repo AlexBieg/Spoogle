@@ -46,12 +46,14 @@
 			<button ng-click="getPlaylist()" ng-disabled="places.$invalid" type="submit" class="btn btn-primary">Get Playlist!</button>
 		</form>
 		<div id="map"></div>
-		<p>
-			Trip Length: {{tripLength | number}} seconds
-		</p>
-		<p>
-			Playlist Length: {{playlistLength | number}} seconds
-		</p>
+		<div id="lengths">
+			<p>
+				Trip Length: {{tripLength | number}} seconds
+			</p>
+			<p>
+				Playlist Length: {{playlistLength | number}} seconds
+			</p>
+		</div>
 		<div id="playlist">
 			<h2>Playlist</h2>
 			<p ng-show="!username"><span>Log in to add the playlist to your Spotify profile.</span></p>

@@ -45,7 +45,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			}
 			console.log(uris);
 			Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
-				console.log("added songs");
+				alert("Added the playlist to your account!");
 			});
 		});
 	}

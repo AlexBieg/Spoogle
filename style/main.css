@@ -14,3 +14,9 @@
 form > * , button{
 	margin: 5px;
 }
+
+#lengths {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
