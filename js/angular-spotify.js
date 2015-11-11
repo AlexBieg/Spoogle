@@ -426,7 +426,7 @@
 
             var authCompleted = false;
             var authWindow = openDialog(
-              'https://accounts.spotify.com/authorize?show_dialog=true&' + this.toQueryString(params),
+              'https://accounts.spotify.com/authorize?' + this.toQueryString(params),
               'Spotify',
               'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
               function () {
@@ -435,6 +435,34 @@
                 }
               }
             );
+
+            loginNew: function () {
+              var deferred = $q.defer();
+              var that = this;
+
+              var w = 400,
+                  h = 500,
+                  left = (screen.width / 2) - (w / 2),
+                  top = (screen.height / 2) - (h / 2);
+
+              var params = {
+                client_id: this.clientId,
+                redirect_uri: this.redirectUri,
+                scope: this.scope || '',
+                response_type: 'token'
+              };
+
+              var authCompleted = false;
+              var authWindow = openDialog(
+                'https://accounts.spotify.com/authorize?show_dialog=true&' + this.toQueryString(params),
+                'Spotify',
+                'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
+                function () {
+                  if (!authCompleted) {
+                    deferred.reject();
+                  }
+                }
+              );
 
             function storageChanged (e) {
               if (e.key === 'spotify-token') {

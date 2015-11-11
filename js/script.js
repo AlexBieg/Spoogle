@@ -22,17 +22,21 @@ app.config(function (SpotifyProvider) {
 app.controller('controller', function($scope, $http, Spotify) {
 	var term;
 	var termIndex = 0;
-	var auth;
 	$scope.playlistLength = 0;
 	$scope.tripLength = 0;
 	$scope.tracks = [];
 	$scope.username = '';
 
+	//login on page load
+	Spotify.login().then(function(data) {
+		Spotify.getCurrentUser().then(function(user) {
+			$scope.username = user.id;
+		});
+	});
+
 	//login user with spotify
 	$scope.login = function() {
-		Spotify.login().then(function(data) {
-			console.log(data);
-			auth = data;
+		Spotify.loginNew().then(function(data) {
 			Spotify.getCurrentUser().then(function(user) {
 				$scope.username = user.id;
 			});
