@@ -42,14 +42,18 @@ app.controller('controller', function($scope, $http, Spotify) {
 			var uris = [];
 			for(var i = 0; i < $scope.tracks.length; i++) {
 				uris.push($scope.tracks[i].uri);
+
 				if(uris.length > 99) {
+					console.log("uris before inner")
+					console.log(uris)
 					Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
 						console.log('added middle songs');
 					});
 					uris = [];
 				}
 			}
-
+			console.log("uris before outer")
+			console.log(uris)
 			Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
 				console.log('added end songs');
 			});
