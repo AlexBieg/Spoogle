@@ -56,7 +56,7 @@
 		<div id="playlist">
 			<h2>Playlist</h2>
 			<p ng-show="!username">Log in to add the playlist to your Spotify profile.</p>
-			<form ng-show="username" name="playlistForm" novalidate>
+			<form ng-show="username && !(playlistLength==0)" name="playlistForm" novalidate>
 				<label for="playlist-name">Playlist Name: </label>
 				<input id="playlist-name" ng-model="playlistName" type="text" class="form-control" required>
 				<button ng-click="addPlaylist()" ng-disabled="playlistForm.$invalid" type="submit" class="btn btn-primary">Add Playlist</button>
