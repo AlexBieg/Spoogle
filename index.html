@@ -55,7 +55,11 @@
 		<div id="directionsPanel"></div>
 		<div id="playlist">
 			<h2>Playlist</h2>
-			<button class="btn btn-primary" ng-disabled="canAddPlaylist()" ng-click="addPlaylist()">Add Playlist</button>
+			<form name="addPlaylist">
+				<label for="playlist-name">Playlist Name: </label>
+				<input id="playlist-name" ng-model="playlistName" type="text" require>
+				<button class="btn btn-primary" ng-disabled="addPlaylist.$invalid" ng-click="addPlaylist()">Add Playlist</button>
+			</form>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
 			</ol>
