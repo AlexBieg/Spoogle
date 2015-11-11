@@ -10,3 +10,7 @@
 	color: red;
 	background-color: lightgray;
 }
+
+form > * , button{
+	margin: 5px;
+}
