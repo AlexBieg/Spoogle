@@ -42,7 +42,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			var uris = [];
 			for(var i = 0; i < $scope.tracks.length; i++) {
 				uris.push($scope.tracks[i].uri);
-				if(uris.length > 100) {
+				if(uris.length > 99) {
 					Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
 						console.log('added middle songs');
 					});
