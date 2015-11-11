@@ -27,13 +27,6 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.tracks = [];
 	$scope.username = '';
 
-	//login on page load
-	Spotify.login(false).then(function(data) {
-		Spotify.getCurrentUser().then(function(user) {
-			$scope.username = user.id;
-		});
-	});
-
 	//login user with spotify
 	$scope.login = function() {
 		Spotify.login(true).then(function(data) {
