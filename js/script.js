@@ -39,14 +39,11 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.addPlaylist = function() {
 		console.log("adding playlist");
 		Spotify.createPlaylist($scope.username, {name : $scope.playlistName}).then(function(playlist) {
-			var uris = []
 			for(var i = 0; i < $scope.tracks.length; i++) {
-				uris.push($scope.tracks[i].uri);
+				Spotify.addPlaylistTracks($scope.username, playlist.id, scope.tracks[i].uri).then(function() {
+					console.log('added song');
+				});
 			}
-			console.log(uris);
-			Spotify.addPlaylistTracks($scope.username, playlist.id, uris).then(function() {
-				alert("Added the playlist to your account!");
-			});
 		});
 	}
 
