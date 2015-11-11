@@ -29,7 +29,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.username = '';
 
 	$scope.canAddPlaylist = function() {
-		return username && playlistLength;
+		return $scope.username && $scope.playlistLength;
 	}
 
 	//login user with spotify
