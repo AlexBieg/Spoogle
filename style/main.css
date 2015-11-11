@@ -1,13 +1,12 @@
 #main-content, html, body { 
-	height: 100%;  
-	background-color: lightgray;
+	height: 100%; 
 }
 
 #map {
 	height: 50%;
 }
 
-#playlist p{
+#playlist span{
 	color: red;
-	background-color: gray;
+	background-color: lightgray;
 }
