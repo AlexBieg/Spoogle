@@ -100,7 +100,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 	    		//if it is not in the playlist already, add it
 	    		if (notAdded) {
 	    			$scope.tracks.push(response.tracks.items[i]);
-	    			$scope.playlistLength += response.tracks.items[i]["duration_ms"] / 1000;
+	    			$scope.playlistLength += Math.round(response.tracks.items[i]["duration_ms"] / 1000);
 	    		}
 	    	}
 	    	//once we are done with the page check if we need to go to the next page

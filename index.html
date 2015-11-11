@@ -47,12 +47,11 @@
 		</form>
 		<div id="map"></div>
 		<p>
-			Trip Length: {{tripLength}}
+			Trip Length: {{tripLength}} seconds
 		</p>
 		<p>
-			Playlist Length: {{playlistLength}}
+			Playlist Length: {{playlistLength}} seconds
 		</p>
-		<div id="directionsPanel"></div>
 		<div id="playlist">
 			<h2>Playlist</h2>
 			<p ng-show="!username">Log in to add the playlist to your Spotify profile.</p>
@@ -65,6 +64,7 @@
 				<li ng-repeat="song in tracks">{{song.name}}</li>
 			</ol>
 		</div>
+		<div id="directionsPanel"></div>
 	</div>
 </body>
 </html>
