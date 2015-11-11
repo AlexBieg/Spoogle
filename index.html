@@ -57,8 +57,8 @@
 			<h2>Playlist</h2>
 			<form name="addPlaylist" novalidate>
 				<label for="playlist-name">Playlist Name: </label>
-				<input id="playlist-name" ng-model="playlistName" type="text" class="form-control" require>
-				<button type="submit" class="btn btn-primary" ng-disabled="addPlaylist.$invalid" ng-click="addPlaylist()">Add Playlist</button>
+				<input id="playlist-name" ng-model="playlistName" type="text" class="form-control" required>
+				<button ng-click="addPlaylist()" ng-disabled="addPlaylist.$invalid" type="submit" class="btn btn-primary">Add Playlist</button>
 			</form>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
