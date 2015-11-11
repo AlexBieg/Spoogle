@@ -55,10 +55,10 @@
 		<div id="directionsPanel"></div>
 		<div id="playlist">
 			<h2>Playlist</h2>
-			<form name="addPlaylist" novalidate>
+			<form name="playlistName" novalidate>
 				<label for="playlist-name">Playlist Name: </label>
 				<input id="playlist-name" ng-model="playlistName" type="text" class="form-control" required>
-				<button ng-click="addPlaylist()" ng-disabled="addPlaylist.$invalid" type="submit" class="btn btn-primary">Add Playlist</button>
+				<button ng-click="addPlaylist()" ng-disabled="playlistName.$invalid" type="submit" class="btn btn-primary">Add Playlist</button>
 			</form>
 			<ol>
 				<li ng-repeat="song in tracks">{{song.name}}</li>
