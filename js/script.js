@@ -48,6 +48,7 @@ app.controller('controller', function($scope, $http, Spotify) {
 			Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
 				console.log('added first songs');
 			});
+			slice += 100;
 			while(slice < uris.length) {
 				Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
 					console.log('added middle songs');
