@@ -45,16 +45,15 @@ app.controller('controller', function($scope, $http, Spotify) {
 				uris.push($scope.tracks[i].uri);
 			}
 
-			for (var i = 0; i < uris.length; i += 100) {
-				$scope.addOneHundred(playlist, uris.slice(i, i + 99));
-			}
+			$scope.addOneHundred(playlist, uris);
 			alert("Added your songs!");
 		});
 	}
 
 	$scope.addOneHundred = function(playlist, tracks) {
-		Spotify.addPlaylistTracks($scope.username, playlist.id, tracks).then(function() {
+		Spotify.addPlaylistTracks($scope.username, playlist.id, tracks.slice(0, 99)).then(function() {
 			console.log("added tracks");
+			$scope.addOneHundred(playlist, tracks.slice(100, tracks.length - 1));
 		})
 	}
 
