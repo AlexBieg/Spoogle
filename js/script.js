@@ -53,7 +53,9 @@ app.controller('controller', function($scope, $http, Spotify) {
 	$scope.addOneHundred = function(playlist, tracks) {
 		Spotify.addPlaylistTracks($scope.username, playlist.id, tracks.slice(0, 99)).then(function() {
 			console.log("added tracks");
-			$scope.addOneHundred(playlist, tracks.slice(100, tracks.length - 1));
+			if (tracks.length > 100) {
+				$scope.addOneHundred(playlist, tracks.slice(100, tracks.length - 1));
+			}
 		})
 	}
 
