@@ -45,18 +45,17 @@ app.controller('controller', function($scope, $http, Spotify) {
 				uris.push($scope.tracks[i].uri);
 			}
 
-			Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
-				console.log('added first songs');
-			});
-			slice += 100;
-			while(slice < uris.length) {
-				Spotify.addPlaylistTracks($scope.username, playlist.id, uris.slice(slice, slice + 100)).then(function() {
-					console.log('added middle songs');
-				});
-				slice += 100;
+			for (var i = 0; i < uris.length; i += 100) {
+				$scope.addOneHundred(playlist, uris.slice(i, i + 99));
 			}
 			alert("Added your songs!");
 		});
+	}
+
+	$scope.addOneHundred = function(playlist, tracks) {
+		Spotify.addPlaylistTracks($scope.username, playlist.id, tracks).then(function() {
+			console.log("added tracks");
+		})
 	}
 
 	//calulates route and gets the songs for it
